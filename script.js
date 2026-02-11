@@ -1,5 +1,5 @@
 // Google Apps Script Web App URL (여기에 실제 배포 URL을 입력하세요)
-const API_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+const API_URL = 'https://script.google.com/macros/s/AKfycby79oWGN25DG1__nH-j-4QCBbahKId03lsJv5qZ1p6nAEd9clHGAtdJ4eD5tQmB6j9-/exec';
 
 // 페이지 로드 시 데이터 가져오기
 document.addEventListener('DOMContentLoaded', function() {
