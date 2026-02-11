@@ -1,5 +1,5 @@
 // Google Apps Script Web App URL (script.js와 동일한 URL)
-const API_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+const API_URL = 'https://script.google.com/macros/s/AKfycby79oWGN25DG1__nH-j-4QCBbahKId03lsJv5qZ1p6nAEd9clHGAtdJ4eD5tQmB6j9-/exec';
 
 // 페이지 로드 시 실행
 document.addEventListener('DOMContentLoaded', function() {
