@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지 - BS Company</title>
+    <link rel="stylesheet" href="admin-style.css">
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1>BS Company 관리자 페이지</h1>
+            <button onclick="location.href='index.html'" class="view-site-btn">사이트 보기</button>
+        </header>
+
+        <div class="admin-content">
+            <!-- 탭 메뉴 -->
+            <div class="tab-menu">
+                <button class="tab-btn active" onclick="showTab('company')">회사 정보</button>
+                <button class="tab-btn" onclick="showTab('categories')">제품 카테고리</button>
+                <button class="tab-btn" onclick="showTab('products')">제품 관리</button>
+                <button class="tab-btn" onclick="showTab('faq')">FAQ 관리</button>
+                <button class="tab-btn" onclick="showTab('inquiries')">문의 내역</button>
+            </div>
+
+            <!-- 회사 정보 탭 -->
+            <div id="company-tab" class="tab-content active">
+                <h2>회사 소개 관리</h2>
+                <form id="companyForm">
+                    <div class="form-group">
+                        <label>회사명</label>
+                        <input type="text" id="companyName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>인사말 제목</label>
+                        <input type="text" id="introTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label>인사말 내용</label>
+                        <textarea id="introContent" rows="6" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>메인 이미지 URL</label>
+                        <input type="text" id="introImage" placeholder="이미지 URL을 입력하세요">
+                        <small>* Google Drive, Imgur 등의 이미지 URL을 사용하세요</small>
+                    </div>
+                    <div class="form-group">
+                        <label>회사 주소</label>
+                        <input type="text" id="companyAddress" required>
+                    </div>
+                    <div class="form-group">
+                        <label>지도 임베드 코드</label>
+                        <textarea id="mapEmbed" rows="3" placeholder="Google Maps 임베드 iframe 코드"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>연락처</label>
+                        <input type="text" id="companyPhone">
+                    </div>
+                    <div class="form-group">
+                        <label>이메일</label>
+                        <input type="email" id="companyEmail">
+                    </div>
+                    <button type="submit" class="save-btn">저장하기</button>
+                </form>
+            </div>
+
+            <!-- 제품 카테고리 탭 -->
+            <div id="categories-tab" class="tab-content">
+                <h2>제품 카테고리 관리</h2>
+                <div class="add-section">
+                    <h3>새 카테고리 추가</h3>
+                    <form id="categoryForm">
+                        <div class="form-row">
+                            <input type="text" id="categoryName" placeholder="카테고리명" required>
+                            <input type="number" id="categoryOrder" placeholder="순서" value="1" required>
+                            <button type="submit">추가</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="list-section">
+                    <h3>카테고리 목록</h3>
+                    <div id="categoriesList"></div>
+                </div>
+            </div>
+
+            <!-- 제품 관리 탭 -->
+            <div id="products-tab" class="tab-content">
+                <h2>제품 관리</h2>
+                <div class="add-section">
+                    <h3>새 제품 추가</h3>
+                    <form id="productForm">
+                        <div class="form-group">
+                            <label>카테고리</label>
+                            <select id="productCategory" required></select>
+                        </div>
+                        <div class="form-group">
+                            <label>제품명</label>
+                            <input type="text" id="productName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>제품 설명</label>
+                            <textarea id="productDesc" rows="4" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>제품 이미지 URL</label>
+                            <input type="text" id="productImage" required>
+                        </div>
+                        <div class="form-group">
+                            <label>스마트스토어 링크</label>
+                            <input type="url" id="productLink" required>
+                        </div>
+                        <div class="form-group">
+                            <label>가격</label>
+                            <input type="text" id="productPrice" placeholder="예: 50,000원">
+                        </div>
+                        <button type="submit" class="save-btn">제품 추가</button>
+                    </form>
+                </div>
+                <div class="list-section">
+                    <h3>제품 목록</h3>
+                    <div id="productsList"></div>
+                </div>
+            </div>
+
+            <!-- FAQ 관리 탭 -->
+            <div id="faq-tab" class="tab-content">
+                <h2>FAQ 관리</h2>
+                <div class="add-section">
+                    <h3>새 FAQ 추가</h3>
+                    <form id="faqForm">
+                        <div class="form-group">
+                            <label>질문</label>
+                            <input type="text" id="faqQuestion" required>
+                        </div>
+                        <div class="form-group">
+                            <label>답변</label>
+                            <textarea id="faqAnswer" rows="4" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>순서</label>
+                            <input type="number" id="faqOrder" value="1" required>
+                        </div>
+                        <button type="submit" class="save-btn">FAQ 추가</button>
+                    </form>
+                </div>
+                <div class="list-section">
+                    <h3>FAQ 목록</h3>
+                    <div id="faqList"></div>
+                </div>
+            </div>
+
+            <!-- 문의 내역 탭 -->
+            <div id="inquiries-tab" class="tab-content">
+                <h2>문의 내역</h2>
+                <div id="inquiriesList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin-script.js"></script>
+</body>
+</html>
